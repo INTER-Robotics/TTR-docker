@@ -1,0 +1,37 @@
+services:
+  ros:
+    build: .
+    image: ttr_docker:base  # Base image for CPU/Intel/AMD (no nvidia gpu)
+    container_name: ros_noetic_exploration
+    shm_size: '2gb'
+    environment:
+      - DISPLAY=${DISPLAY}
+      - WAYLAND_DISPLAY=${WAYLAND_DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/usr/local/nvidia/lib64:${LD_LIBRARY_PATH}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ${XDG_RUNTIME_DIR}/${WAYLAND_DISPLAY}:/tmp/${WAYLAND_DISPLAY}
+      - ./TTR:/root/catkin_ws/src/TTR
+    devices:
+      - /dev/dri:/dev/dri
+    stdin_open: true
+    tty: true
+    network_mode: "host"
+
+  ros-nvidia:
+    extends: ros
+    image: ttr_docker:nvidia # To use with NVIDIA gpu (recommended)
+    container_name: ros_noetic_exploration_nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all,graphics,display,utility,compute
+      - __GLX_VENDOR_LIBRARY_NAME=nvidia
+      - __NV_PRIME_RENDER_OFFLOAD=1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
