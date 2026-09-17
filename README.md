@@ -30,8 +30,8 @@ sudo systemctl restart docker
 1. **Clone the repository:**
    Since the `TTR` folder acts as an external dependency or submodule, make sure to clone it recursively:
    ```bash
-   git clone --recursive <your-repository-url>
-   cd <your-repository-folder>
+   git clone --recursive https://github.com/INTER-Robotics/TTR-docker.git
+   cd TTR-docker
    ```
 
 2. **Allow X11/Wayland connection (GUI apps):**
