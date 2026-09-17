@@ -49,7 +49,7 @@ If your PC has an NVIDIA graphics card and the NVIDIA Container Toolkit installe
 
 To build and open an interactive terminal inside the container, run:
 ```bash
-docker compose run --rm ros-nvidia bash
+sudo docker compose run --rm ros-nvidia bash
 ```
 
 ### Option B: Without NVIDIA GPU (Intel / AMD / CPU)
@@ -57,7 +57,7 @@ If your PC has an integrated Intel/AMD GPU or no dedicated graphics card, use th
 
 To build and open an interactive terminal inside the container, run:
 ```bash
-docker compose run --rm ros bash
+sudo docker compose run --rm ros bash
 ```
 
 *(Note: The first time you run either of these commands, Docker will download the base images and build the container, which may take a few minutes).*
