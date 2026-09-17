@@ -6,8 +6,24 @@ This repository provides a containerized ROS Noetic environment to run [**TTR**]
 
 Before you begin, ensure you have the following installed on your host machine:
 *   [Docker](https://docs.docker.com/engine/install/)
-*   [Docker Compose](https://docs.docker.com/compose/install/)
-*   *(Optional but recommended)* **NVIDIA Container Toolkit**: If you have an NVIDIA GPU, you need this installed to enable hardware acceleration inside the container.
+*   [Docker Compose](https://docs.docker.com/compose/install/) (Usually installed during Docker installation, check running `docker compose version` on your bash).
+*   *(Optional but recommended)* **NVIDIA Container Toolkit**: If you have an NVIDIA GPU, you need this installed to enable hardware acceleration inside the container:
+
+```
+# Download key from NVIDIA
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+
+# Add the official repository
+curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+
+# Update list of packages and install
+sudo apt-get update
+sudo apt-get install -y nvidia-container-toolkit
+
+# Configure with docker
+sudo nvidia-ctk runtime configure --runtime=docker
+sudo systemctl restart docker
+```
 
 ## Installation
 
