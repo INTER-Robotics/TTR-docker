@@ -67,3 +67,4 @@ To execute TTR in the Anselm Turmeda building scenario run the following:
 ```
 roslaunch ttr MAV_exploration_indoor_at.launch
 ```
+For further information take a look at usage section in [TTR](https://github.com/INTER-Robotics/TTR).
