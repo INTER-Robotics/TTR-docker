@@ -61,3 +61,9 @@ sudo docker compose run --rm ros bash
 ```
 
 *(Note: The first time you run either of these commands, Docker will download the base images and build the container, which may take a few minutes).*
+
+## Usage
+To execute TTR in the Anselm Turmeda building scenario run the following:
+```
+roslaunch ttr MAV_exploration_indoor_at.launch
+```
